@@ -78,10 +78,10 @@ define postfix::hash ($ensure='present', $source=false, $content=false) {
   }
 
   exec {"generate ${name}.db":
+    path        => [ "/bin", "/usr/bin", "/sbin", "/usr/sbin" ],
     command     => "postmap ${name}",
-    #creates    => "${name}.db", # this prevents postmap from being run !
-    subscribe   => File[$name],
+    subscribe   => File["${name}"],
     refreshonly => true,
-    require     => Package['postfix'],
+    require     => Package["postfix"],
   }
 }
