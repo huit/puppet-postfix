@@ -129,7 +129,7 @@ class postfix {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template($master_os_template),
+    content => $master_os_template,
     seltype => $postfix_seltype,
     notify  => Service['postfix'],
     require => Package['postfix'],
